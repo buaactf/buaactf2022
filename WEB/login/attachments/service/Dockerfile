@@ -4,15 +4,15 @@ WORKDIR /srv/
 RUN apt-get update && apt-get -y install ssh
 
 # Add user..
-RUN useradd -d /home/stypr -s /bin/false stypr && \
-    mkdir -p /home/stypr && \
-    touch /home/stypr/.hushlogin
+RUN useradd -d /home/pillow -s /bin/false pillow && \
+    mkdir -p /home/pillow && \
+    touch /home/pillow/.hushlogin
 RUN chmod 1733 /tmp /var/tmp /dev/shm /proc
 
 # Install service
 COPY . /srv/
-RUN npm install && chmod 555 /srv/ && chown -R stypr:root /srv/
+RUN npm install && chmod 555 /srv/ && chown -R pillow:root /srv/
 
-USER stypr
+USER pillow
 EXPOSE 3000
 CMD ["node", "login.js"]
