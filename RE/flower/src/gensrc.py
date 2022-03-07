@@ -13,11 +13,11 @@ def gen_func(c, idx):
     res += '\t\t"lea rax, [rip + 0]\\n\\t"\n'
     res += f'\t\t"sub rax, rbx\\n\\t"\n'
     res += '\t\t"cmp al, byte ptr [rdi]\\n\\t"\n'
-    res += f'\t\t"je END_{idx}\\n\\t"\n'
+    res += f'\t\t"je $+7\\n\\t"\n'
     res += '\t\t"push 0x3c\\n\\t"\n'
     res += '\t\t"pop rax\\n\\t"\n'
     res += '\t\t"syscall\\n\\t"\n'
-    res += f'\t\t"END_{idx}:\\n\\t"\n'
+    # res += f'\t\t"END_{idx}:\\n\\t"\n'
     res += "\t);\n"
     if len(flag) - idx != 1:
         res += f'\tfunc_{idx+1}(a1 + 1);\n'
@@ -37,7 +37,7 @@ int main(){
     asm(".intel_syntax noprefix\\n");
     scanf("%100s", flag);
     func_0(flag);
-    printf("The flag is %s", flag);
+    printf("Correct!\\n");
     return 0;
 }
 
