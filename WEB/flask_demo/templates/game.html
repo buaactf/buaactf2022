@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+</head>
+<body>
+    <div>{{ score}}</div>
+    <input type="text" id="code_input" value="" placeholder="请输入验证码"/><button id="my_button">验证</button>
+    <img id="verficode" src="./code" onclick="clickpic(this)">
+</body>
+<script>
+    function clickpic(img) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("get", "/code", true);
+        xhr.send();//发送空的query string。
+        xhr.onreadystatechange = function() {//设定侦听器onreadystatechange。
+            if(this.readyState == this.HEADERS_RECEIVED) {//如果readyState表示响应头已返回
+                console.log(xhr.getResponseHeader("Cookie"));
+                var cookie=xhr.getResponseHeader("Set-Cookie");//将此连接的Content-Type响应头项赋值到contentType。
+                {#alert(cookie);#}
+            }
+}
+    }
+</script>
+</html>
