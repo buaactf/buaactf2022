@@ -33,10 +33,10 @@ class Task(socketserver.BaseRequestHandler):
     def proof_of_work(self):
         random.seed(os.urandom(8))
         proof = ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(20)])
-        print (proof)
+        # print (proof)
         _hexdigits = md5(proof.encode()).hexdigest()
         self.send(f"[+] md5(XXXX+{proof[4:]}) == {_hexdigits}".encode())
-        x = self.recv(prompt=b'[+] Plz tell me XXXX:' )
+        x = self.recv(prompt=b'[+] Plz tell me XXXX: ')
         if len(x) != 4 or md5(x + proof[4:].encode()).hexdigest() != _hexdigits:
             return False
         return True

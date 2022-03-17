@@ -130,9 +130,9 @@ int main() {
     
     char key[100];
     printf("Send me 300RMB of bitcoins to get the key\nInput the Key: ");
-    scanf("%50s", key);
+    scanf("%10s", key);
     FILE* fid;
-    fid = fopen("flag.png.encrypt", "rb");
+    fid = fopen("flag.png.enc", "rb");
     if (fid == NULL) {
         printf("Can't find encrypt file");
         return 1;
