@@ -1,0 +1,8 @@
+version: "2"
+services:
+  wordle:
+    build: .
+    image: buaactf2022/wordle_revenge
+    ports:
+      - "65100:65100"
+    # restart: always
