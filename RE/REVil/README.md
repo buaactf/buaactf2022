@@ -18,7 +18,7 @@ VS 2019 release x64
 
 A png, with following text:
 
-(>0_0)> flag{Rev3rse_or_p@y_That_1s_the_ques7i0n} <(0_0<)
+(>0_0)> flag{Rev3rse_OR_p@y_Th4t_1s_the_ques7i0n} <(0_0<)
 
 ## Hints
 
