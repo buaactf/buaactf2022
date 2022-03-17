@@ -77,11 +77,11 @@
 
                 success(data){
                     if(data?.message ==="success"){
-                        $.cookie('token', data?.Authorization);
+                        {#$.cookie('token', data?.Authorization);#}
                         window.location.href = './pdd';
                     }
                     else{
-                    alert(data.msg);
+                        alert(data.msg);
                     }
                 },
                 error:function(e){

@@ -128,9 +128,10 @@ def create_validate_code(size=(120, 30),
     return img, strs
 
 def create_token(username, code):
+    # 构造payload
     payload = {
         'username': username,
-        'code': code,
+        'code': code,  # 自定义用户ID
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)  # 超时时间
     }
     result = jwt.encode(payload=payload, key=SALT, algorithm="HS256", headers=headers)

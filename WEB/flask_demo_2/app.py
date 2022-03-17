@@ -1,32 +1,23 @@
+from io import BytesIO
+
 from flask import g, request, Flask, current_app, jsonify, render_template
 import jwt
 from jwt import exceptions
 import functools
 import datetime
- 
+import random
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from io import BytesIO
+from base64 import b64encode
+
 app = Flask(__name__)
- 
-# 处理中文编码
 app.config['JSON_AS_ASCII'] = False
- 
- 
-# 跨域支持
-# def after_request(resp):
-#     resp.headers['Access-Control-Allow-Origin'] = '*'
-#     return resp
- 
- 
-# app.after_request(after_request)
- 
-# 构造header
-headers = {
-    'typ': 'jwt',
-    'alg': 'HS256'
-}
- 
+
+headers = {'typ': 'jwt', 'alg': 'HS256'}
+
 # 密钥
 SALT = 'iv%i6xo7l8_t9bf_u!8#g#m*)*+ej@bek6)(@u3kh*42+unjv='
- 
+
 _letter_cases = "abcdefghjkmnpqrstuvwxy"  # 小写字母，去除可能干扰的i，l，o，z
 _upper_cases = _letter_cases.upper()  # 大写字母
 _numbers = ''.join(map(str, range(10)))  # 数字
@@ -40,7 +31,7 @@ def create_validate_code(size=(120, 30),
                          bg_color=(230, 230, 230),
                          fg_color=(18, 18, 18),
                          font_size=20,
-                         font_type='/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
+                         font_type='./static/DejaVuSans-Bold.ttf',
                          length=4,
                          draw_lines=True,
                          n_line=(1, 2),
@@ -102,8 +93,7 @@ def create_validate_code(size=(120, 30),
         font = ImageFont.truetype(font_type, font_size)
         font_width, font_height = font.getsize(strs)
 
-        draw.text(((width - font_width) / 3, (height - font_height) / 3),
-                  strs, font=font, fill=fg_color)
+        draw.text(((width - font_width) / 3, (height - font_height) / 3), strs, font=font, fill=fg_color)
         print(c_chars)
         return ''.join(c_chars)
 
@@ -114,29 +104,23 @@ def create_validate_code(size=(120, 30),
     strs = create_strs()
 
     # 图形扭曲参数
-    params = [1 - float(random.randint(1, 2)) / 100,
-              0,
-              0,
-              0,
-              1 - float(random.randint(1, 10)) / 100,
-              float(random.randint(1, 2)) / 500,
-              0.001,
-              float(random.randint(1, 2)) / 500
-              ]
+    params = [1 - float(random.randint(1, 2)) / 100, 0, 0, 0, 1 - float(random.randint(1, 10)) / 100, float(random.randint(1, 2)) / 500, 0.001, float(random.randint(1, 2)) / 500]
     img = img.transform(size, Image.PERSPECTIVE, params)  # 创建扭曲
     img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)  # 滤镜，边界加强（阈值更大）
     return img, strs
 
+
 def create_token(username, code):
+    # 构造payload
     payload = {
         'username': username,
-        'code': code,
+        'code': code,  # 自定义用户ID
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)  # 超时时间
     }
     result = jwt.encode(payload=payload, key=SALT, algorithm="HS256", headers=headers)
     return result
- 
- 
+
+
 def verify_jwt(token, secret=None):
     """
     检验jwt
@@ -146,7 +130,7 @@ def verify_jwt(token, secret=None):
     """
     if not secret:
         secret = current_app.config['JWT_SECRET']
- 
+
     try:
         payload = jwt.decode(token, secret, algorithms=['HS256'])
         return payload
@@ -156,31 +140,32 @@ def verify_jwt(token, secret=None):
         return 2
     except jwt.InvalidTokenError:  # '非法的token'
         return 3
- 
- 
+
+
 def login_required(f):
     '让装饰器装饰的函数属性不会变 -- name属性'
     '第1种方法,使用functools模块的wraps装饰内部函数'
- 
+
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
-        try:
-            if g.username == 1:
-                return {'code': 4001, 'message': 'token已失效'}, 401
-            elif g.username == 2:
-                return {'code': 4001, 'message': 'token认证失败'}, 401
-            elif g.username == 2:
-                return {'code': 4001, 'message': '非法的token'}, 401
-            else:
-                return f(*args, **kwargs)
-        except BaseException as e:
-            return {'code': 4001, 'message': '请先登录认证.'}, 401
- 
+        # try:
+        if g.username == 1:
+            return {'code': 4001, 'message': 'token已失效'}, 401
+        elif g.username == 2:
+            return {'code': 4001, 'message': 'token认证失败'}, 401
+        elif g.username == 2:
+            return {'code': 4001, 'message': '非法的token'}, 401
+        else:
+            return f(*args, **kwargs)
+        # except BaseException as e:
+        #     print(e)
+        #     return {'code': 4001, 'message': '请先登录认证.'}, 401
+
     '第2种方法,在返回内部函数之前,先修改wrapper的name属性'
     # wrapper.__name__ = f.__name__
     return wrapper
- 
- 
+
+
 @app.before_request
 def jwt_authentication():
     """
@@ -189,11 +174,9 @@ def jwt_authentication():
     3.使用jwt模块进行校验
     4.判断校验结果,成功就提取token中的载荷信息,赋值给g对象保存
     """
-    auth = request.headers.get('Authorization')
-    if auth and auth.startswith('Bearer '):
+    token = request.cookies.get('token')
+    if token:
         "提取token 0-6 被Bearer和空格占用 取下标7以后的所有字符"
-        token = auth[7:]
-        "校验token"
         g.username = None
         try:
             "判断token的校验结果"
@@ -206,53 +189,58 @@ def jwt_authentication():
             g.username = 2
         except jwt.InvalidTokenError:  # '非法的token'
             g.username = 3
- 
- 
+
+
 @app.route('/code')
+@login_required
 def get_code():
     # 把strs发给前端,或者在后台使用session保存
+    username = g.username
     code_img, strs = create_validate_code()
-    print(strs)
     buf = BytesIO()
     code_img.save(buf, 'jpeg')
-
     buf_str = buf.getvalue()
-    response = app.make_response(buf_str)
-    response.headers['Content-Type'] = 'image/gif'
-    session['img'] = strs.upper()
+    base64_str = b64encode(buf_str)
+    prefix = bytes('data:image/jpeg;base64,'.encode('utf-8'))
+    response = app.make_response(prefix + base64_str)
+    response.headers['Content-Type'] = 'text/html'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Authorization'] = create_token(username, strs)
 
     return response
 
 
 @app.route('/')
-def hello_world():
-    return "ok"
- 
- 
-# 登录
+def hello_world():  # put application's code here
+    return render_template("index.html")
+
+
+@app.route('/test')
+def test():  # put application's code here
+    return render_template("test.html")
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         data = request.form
-            # request.form.get('img')
+        # request.form.get('img')
         username = data.get("username")
         password = data.get("password")
-            # 验证账号密码，正确则返回token，用于后续接口权限验证
+        # 验证账号密码，正确则返回token，用于后续接口权限验证
         token = create_token(username, '****')
-        # rsp.headers['Authorization'] = 'test_token'
-        return {"code": 200, "message": "success", "data": {"Authorization": token}}
-    return render
+        return {"code": 200, "message": "success", "Authorization": token}
 
 
- 
- 
-# 测试接口
-@app.route('/api/test', methods=['GET', 'POST'])
+@app.route('/pdd', methods=['GET', 'POST'])
 @login_required
-def submit_test_info_():
+def game():
     username = g.username
-    return username
- 
- 
-if __name__ == "__main__":
+    score = 0
+    if score == 1000:
+        pass
+    return render_template("game.html", score=score)
+
+
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8090, debug=True)
