@@ -218,3 +218,9 @@ a {
 .orange-btn {
     background: rgba(87,198,255,.5);
 }
+
+#verficode {
+    border-style: solid;
+    border-width: 10px;
+    border-color:red;
+}

@@ -1,0 +1,17 @@
+<img id="pic" onclick="clickpic(this)"
+    src="https://bkimg.cdn.bcebos.com/pic/d000baa1cd11728b471066bf06b6d4cec3fdfc038651?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5/format,f_auto">
+<script>
+    function clickpic(img) {
+        console.log("you click the pic")
+        console.log("src is" + img.src)
+        var xhr = new XMLHttpRequest();
+        // xhr.open("get", "https://raw.githubusercontent.com/zaproxy/zaproxy/main/LICENSE", true);
+        xhr.open("get", "https://xz.aliyun.com/t/11000", true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                console.log(xhr.responseText);
+            }
+        }
+    }
+</script>

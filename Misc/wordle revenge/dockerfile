@@ -1,0 +1,21 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN \
+        apt update -y && \
+        apt install -y python3 socat
+    
+COPY src/ /root/
+
+WORKDIR /root/
+RUN chmod +x main.py 
+
+EXPOSE 65100
+
+ENTRYPOINT ["bash","/root/start.sh"]
+
+
+
+
+

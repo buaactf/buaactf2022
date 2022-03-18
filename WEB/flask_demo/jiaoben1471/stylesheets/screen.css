@@ -1,0 +1,99 @@
+/*-----------------------RESET----------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block; }
+
+/*------------------------------------------------------------------*/
+body {padding-top:2.8em}
+
+.ph-post1-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 15.25em;
+  min-width: 10em;
+  font: 2em/1.4 "Bowlby One SC", Arial, sans-serif;
+  font-weight: 400; }
+  .ph-post1-wrapper img {
+    max-width: 100%;
+    height: auto; }
+  .ph-post1-wrapper a {
+    text-decoration: none; }
+  .ph-post1-wrapper h1 {
+    text-align: center;
+    margin-bottom: 1.4em;
+    color: #4186b2; }
+
+.ph-post1-wrapper .button {
+  display: block;
+  position: relative;
+  height: 3.4em;
+  width: 10em;
+  margin: .7em auto;
+  overflow: hidden; }
+  .ph-post1-wrapper .button > span {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; }
+  .ph-post1-wrapper .button:after, .ph-post1-wrapper .button > span > span {
+    display: block;
+    text-align: center;
+    border-radius: 0.625em;
+    padding: 1em 0; }
+  .ph-post1-wrapper .button:after {
+    content: attr(data-title);
+    width: 100%;
+    background: #4186b2;
+    color: #67d6c1; }
+  .ph-post1-wrapper .button > span > span {
+    width: 10em;
+    background: #67d6c1;
+    color: #4186b2; }
+  .ph-post1-wrapper .button:hover > span {
+    width: 100%; }
+
+.ph-post1-wrapper .button1 > span {
+  height: 0%;
+  width: 100%; }
+.ph-post1-wrapper .button1:hover > span {
+  height: 100%; }
+.ph-post1-wrapper .button1:after {
+  background: #eb6e61;
+  color: #2f3c4b; }
+.ph-post1-wrapper .button1 > span > span {
+  background: #2f3c4b;
+  color: #eb6e61; }
+
+footer {
+  text-align: center;
+  font-size: .5em;
+  font-family: Helvetica, Arial, sans-serif; }
