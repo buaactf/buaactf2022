@@ -9,5 +9,5 @@ RUN npm config set registry https://registry.npm.taobao.org && \
 
 WORKDIR /shenlong
 
-EXPOSE 5000
+EXPOSE 3000
 ENTRYPOINT [ "serve" ]
