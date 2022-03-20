@@ -8,14 +8,15 @@
 
 - ida / ghidra ...
 - python / c / go ...
-- upx (optional)
 - hexdump / 010editor ...
 
 ## 步骤
 
-先脱壳
+逆一下 vm
 
-随后求解
+然后求出来key: <^uG|veR
+
+运行程序就有 flag 了
 
 ## 总结
 
