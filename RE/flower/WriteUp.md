@@ -2,9 +2,18 @@
 
 auto re
 
+compile:
+
+```
+python3 gensrc.py
+gcc src.c -masm=intel -no-pie
+```
+
 ## 工具
 
-反汇编/反编译工具，自动化脚本
+反汇编/反编译工具
+
+自动化脚本
 
 ## 步骤
 
@@ -89,7 +98,6 @@ p.recvuntil(b'[+] Tell me the key: ')
 p.sendline(solve(rec).encode())
 # p.sendline(b'flag')
 p.interactive()
-
 ```
 
 ### angr 版本
@@ -111,6 +119,8 @@ if simgr.found:
 else:
     print ("No res")
 ```
+
+远程懒了，想办法找到 find 就行（或者 30 秒足够手动找 find 了）
 
 ## 总结
 
