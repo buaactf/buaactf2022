@@ -1,0 +1,7 @@
+---
+name: batch_game
+description: >
+  可怜的Crazyman的flag被s0uthwood删掉了 你能帮帮他找回他的flag吗
+flag: flag{W0w_y0u_aRe_M@ster_0f_BaTch}
+author: crazyman
+tags: [misc, reverse]

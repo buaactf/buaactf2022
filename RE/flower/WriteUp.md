@@ -2,13 +2,24 @@
 
 auto re
 
+compile:
+
+```
+python3 gensrc.py
+gcc src.c -masm=intel -no-pie
+```
+
 ## 工具
 
-反汇编/反编译工具，自动化脚本
+反汇编/反编译工具
+
+自动化脚本
 
 ## 步骤
 
 逆向，然后写脚本
+
+### objdump
 
 ```python
 import subprocess
@@ -87,8 +98,29 @@ p.recvuntil(b'[+] Tell me the key: ')
 p.sendline(solve(rec).encode())
 # p.sendline(b'flag')
 p.interactive()
-
 ```
+
+### angr 版本
+
+```python
+from angr import *
+
+proj = Project('./a2.out', main_opts={'base_addr': 0x400000})
+
+start_state = proj.factory.entry_state()
+
+simgr = proj.factory.simgr(start_state)
+
+simgr.explore(find = 0x401182)
+
+if simgr.found:
+    solution = simgr.found[0]
+    print (solution.posix.dumps(0))
+else:
+    print ("No res")
+```
+
+远程懒了，想办法找到 find 就行（或者 30 秒足够手动找 find 了）
 
 ## 总结
 
