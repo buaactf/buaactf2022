@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Upload Me</title>
+    <link href="/static/bulma.min.css" rel="stylesheet">
+
+
+  </head>
+
+  <body>
+
+
+    <div class="container" >
+      <style type="text/css">
+      body {
+        padding-top: 50px;
+      }
+      .starter-template {
+        padding: 40px 15px;
+        text-align: center;
+      }
+      </style>
+
+      <div class="starter-template box">
+        
+        <div class="media-left">
+            <h1>Hello, my dear friend. </h1>
+
+            <h1 id="text"></h1>
+        </div>
+        <div class="media-right">
+            <form action="/upload" method="post"
+            enctype="multipart/form-data">
+            
+            <input class="button is-primary is-light" type="file" name="the_file"  /> 
+            <input class="button is-primary is-light" type="submit" name="submit" value="Submit" />
+            </form>
+        </div>
+
+        </p>
+        
+      </div>
+
+    </div>
+
+
+{% if forbidden %}
+<script type="text/javascript">alert("you bad bad!")</script>
+{% endif %}
+<script>
+    let divTyping = document.getElementById('text')
+    let i = 0,
+      timer = 0,
+      str = 'You can upload something here...'
+  
+    function typing () {
+      if (i <= str.length) {
+        divTyping.innerHTML = str.slice(0, i++) + '_'
+        timer = setTimeout(typing, 200)
+      }
+      else {
+        divTyping.innerHTML = str//结束打字,移除 _ 光标
+        clearTimeout(timer)
+      }
+    }
+  
+    typing()
+</script>
+  </body>
+</html>

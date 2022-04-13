@@ -1,8 +1,8 @@
-# challenge name
+# 召唤神龙
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
-| fyh | WEB | 500 |
+| fyh | WEB | 30 |
 
 ## Description
 
