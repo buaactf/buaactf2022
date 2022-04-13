@@ -1,0 +1,2 @@
+User-Agent:*
+dis-allowed:dirseachcantfindthisfile.php

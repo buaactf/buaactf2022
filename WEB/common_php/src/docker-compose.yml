@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+    service:
+        image: hidden/common_php
+        build: .
+        restart: always
+        ports:
+            - "26699:80"
