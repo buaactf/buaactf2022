@@ -1,4 +1,4 @@
-# challenge name
+# math_genius_revenge
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
