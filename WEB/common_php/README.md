@@ -1,16 +1,16 @@
-# challenge name
+# common_php
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
-| ssgss | crypto | 300 |
+| hidden_er | Web | 300 |
 
 ## Description
 
-一个很安全的全新的质数生成器！
+经典的php考点 你拿捏了吗
 
 ## flag
 
-`flag{U_g&5-th3_BA51cs_MY_PaDawan>_<}`
+`flag{I_@M_N0T_M4tryoshka_do1l*^_^*}`
 
 ## Hints
 
@@ -18,4 +18,4 @@
 
 | 附件名称 | 附件描述 |
 | :------- | :------- |
-| task.py  | 题目附件 |
+|          |          |

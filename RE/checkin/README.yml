@@ -1,0 +1,7 @@
+---
+name: "checkin"
+description: >
+  flag均为小写字母。注意：得到的 flag 请包上 flag{} 提交
+flag: flag{b72dcc6c-4c13-5567-d70b-14e2253d8c21}
+author: s0uthwood
+tags: [reverse]

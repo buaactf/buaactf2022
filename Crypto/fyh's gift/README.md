@@ -1,8 +1,8 @@
-# challenge name
+# fyh's gift
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
-| FYHSSGSS | crypto | 300 |
+| ssgss | crypto | 300 |
 
 ## Description
 
@@ -20,4 +20,4 @@ flag{M33t~you~Aga|n!!g3n3r@Te_y0vr_0Wn_Curv3_1s_5o_$4n9erours!!}
 
 | 附件名称  | 附件描述 |
 | :-------- | :------- |
-| task.sage |          |
+| task.sage | 题目附件 |

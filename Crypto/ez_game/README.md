@@ -1,21 +1,21 @@
-# 召唤神龙
+# ez_game
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
-| fyh | WEB | 30 |
+| hidden_er | crypto | 300 |
 
 ## Description
 
-用`flag`以及`{}`包括后提交
+能用的脚本就是好脚本
 
 ## flag
 
-`flag{F12_C4N_D0}`
+`flag{Cr3pT0_Is_60_1nte2esTin3!}`
 
 ## Hints
 
 ## Attachments
 
 | 附件名称 | 附件描述 |
-| :--- | :--- |
-|      |      |
+| :------- | :------- |
+|          |          |

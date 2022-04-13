@@ -1,16 +1,16 @@
-# challenge name
+# Upload_me
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
-| ssgss | crypto | 300 |
+| ssgss | Web | 300 |
 
 ## Description
 
-一个很安全的全新的质数生成器！
+传呀 传呀 传，快，快，趁热传，嘿，趁热传呀！
 
 ## flag
 
-`flag{U_g&5-th3_BA51cs_MY_PaDawan>_<}`
+`flag{GOD0fFlask1syouOULAOULAOULA}`
 
 ## Hints
 
@@ -18,4 +18,4 @@
 
 | 附件名称 | 附件描述 |
 | :------- | :------- |
-| task.py  | 题目附件 |
+|          |          |

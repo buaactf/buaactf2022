@@ -1,0 +1,7 @@
+---
+name: "flower"
+description: >
+  I can't reverse the binary in 30 seconds, can you help me?
+flag: flag{Thi5_m@Y_H3lp_y0u_Get_s7arted_1n_auto_REV}
+author: s0uthwood
+tags: [reverse]
