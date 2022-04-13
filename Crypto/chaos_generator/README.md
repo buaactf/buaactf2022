@@ -2,7 +2,7 @@
 
 | 出题人 | 题目类型 | 题目分值 |
 | :--- | :--- | :--- |
-| FYHSSGSS | crypto | 300 |
+| ssgss | crypto | 300 |
 
 ## Description
 
@@ -10,7 +10,7 @@
 
 ## flag
 
-没想好
+`flag{U_g&5-th3_BA51cs_MY_PaDawan>_<}`
 
 ## Hints
 
@@ -18,4 +18,4 @@
 
 | 附件名称 | 附件描述 |
 | :------- | :------- |
-| task.py  |          |
+| task.py  | 题目附件 |
