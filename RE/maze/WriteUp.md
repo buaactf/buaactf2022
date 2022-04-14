@@ -13,3 +13,5 @@ c++、迷宫
 ## 总结
 
 带加血，减血Buff的迷宫
+答案是这个flag{ddddsssssssssddddd}
+源码都给了，对着ida看一遍就好啦！过程不赘述啦！
