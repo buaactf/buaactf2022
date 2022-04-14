@@ -36,7 +36,7 @@ def solve(recv):
     return ''.join([chr(f) for f in flag_list])
 
 
-p = remote("127.0.0.1", 12345)
+p = remote("101.43.185.64", 12345)
 rec = p.recvline().strip()
 p.recvuntil(b'[+] Tell me the key: ')
 p.sendline(solve(rec).encode())
