@@ -13,3 +13,7 @@
 ## 总结
 
 smc+代码注入
+
+flag{CodeInjectionIsACoolWayToHijackCode}  👈答案
+
+smc解密之后再注入，注入的代码真就是一个超简单的异或！就不赘述啦！
