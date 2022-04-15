@@ -41,7 +41,7 @@ def encrypt(data,key):#加密主函数
 
 def decrypt(data,key):#解密主函数
     x = [0] * 36
-    x[0], x[1], x[2], x[3] = data >> 96, data >> 64 & 0xffffffff ,data >> 32 & 0xffffffff, data & 0xffffffff
+    x[0], x[1], x[2], x[3] = data >> 96, (data >> 64) & 0xffffffff ,(data >> 32) & 0xffffffff, data & 0xffffffff
     key=keyGenerator(key)
     for i in range(4,36):
         x[i] = x[i - 4] ^ T(x[i - 3] ^ x[i - 2] ^ x[i - 1] ^ key[39 - i])
@@ -95,7 +95,7 @@ def main():
             if (cip1<<128) + cip2 == 0xa4828a9ad89d18bf5b225bd2ec733fb7f01da384fec568f891e4aab4e3146aef:
                 print ("Congratulations~")
             else:
-                # print (hex((cip1<<128) + cip2))
+                print (hex((cip1<<128) + cip2))
                 print ("try it again!")
         case _:
             print ("Wrong format!")

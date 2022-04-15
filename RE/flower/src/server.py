@@ -8,7 +8,7 @@ import subprocess
 import base64
 import tempfile
 
-flag = b'flag{practice}'
+flag = b'flag{Thi5_m@Y_H3lp_y0u_Get_s7arted_1n_auto_REV}'
 
 head = '#include <stdio.h>\n#include <stdlib.h>\nchar flag[127];\n\n'
 main = '''
@@ -89,6 +89,7 @@ class Task(socketserver.BaseRequestHandler):
                     fp.write(c)
         except:
             print (b"Errors occurred, please contact admin!")
+            return False
         finally:
             res = subprocess.call(['gcc', '-x', 'c', path, '-o', path + '.out', '-masm=intel', '-no-pie'])
             if res != 0:
@@ -121,7 +122,7 @@ class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):
     pass
 
 if __name__ == '__main__':
-    HOST, PORT = '127.0.0.1', 12345
+    HOST, PORT = '0.0.0.0', 12345
     server = ForkedServer((HOST, PORT), Task)
     server.allow_reuse_address = True
     server.serve_forever()
