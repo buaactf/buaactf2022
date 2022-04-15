@@ -1,0 +1,32 @@
+version: "3"
+networks:
+  mynetwork:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+services:
+  app:
+    build: ./app
+    image: ftpchecker/app
+    ports: 
+    - "30001:8080"
+    dns:
+    - 8.8.8.8
+    environment:
+      FTPADDR: 172.20.0.7
+    restart: always
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.6
+
+  ftp:
+    build: ./ftp
+    image: ftpchecker/ftp
+    restart: always
+    environment:
+      FTP_USER: admin
+      FTP_PASS: admin
+      PASV_ADDRESS: 172.20.0.7
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.7
